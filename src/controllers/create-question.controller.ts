@@ -3,7 +3,6 @@ import { JwtAuthGuard } from "@/auth/jwt-auth.guard";
 import { UserPayload } from "@/auth/jwt.strategy";
 import { ZodValidationPipe } from "@/pipes/zod-validation.pipe";
 import { PrismaService } from "@/prisma/prisma.service";
-import { formatStringToId } from "@/utils/format-string-to-id";
 import { Body, Controller, Post, UseGuards } from "@nestjs/common";
 import { z } from "zod";
 
@@ -28,7 +27,7 @@ export class CreateQuestionController {
   ) {
     const { title, content } = body;
     const userId = user.sub;
-    const slug = formatStringToId(title);
+    const slug = this.convertToSlug(title);
 
     await this.prisma.question.create({
       data: {
@@ -38,5 +37,14 @@ export class CreateQuestionController {
         slug,
       },
     });
+  }
+
+  private convertToSlug(title: string): string {
+    return title
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
   }
 }
