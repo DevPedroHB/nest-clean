@@ -1,6 +1,6 @@
-import { IUseCaseError } from "./use-case-error";
+import { UseCaseError } from "./use-case-error";
 
-export class ResourceNotFoundError extends Error implements IUseCaseError {
+export class ResourceNotFoundError extends Error implements UseCaseError {
   constructor() {
     super("Resource not found");
   }
