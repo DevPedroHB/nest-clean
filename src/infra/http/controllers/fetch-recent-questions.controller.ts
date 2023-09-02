@@ -31,7 +31,7 @@ export class FetchRecentQuestionsController {
       throw new Error();
     }
 
-    const questions = result.value.questions;
+    const { questions } = result.value;
 
     return {
       questions: questions.map(QuestionPresenter.toHTTP),
