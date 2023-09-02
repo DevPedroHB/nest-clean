@@ -7,19 +7,22 @@ import { Injectable } from "@nestjs/common";
 export class PrismaAnswerCommentsRepository
   implements AnswerCommentsRepository
 {
-  findById(id: string) {
+  async findById(id: string): Promise<AnswerComment | null> {
     throw new Error("Method not implemented.");
   }
 
-  findManyByAnswerId(answerId: string, params: PaginationParams) {
+  async findManyByAnswerId(
+    answerId: string,
+    params: PaginationParams
+  ): Promise<AnswerComment[]> {
     throw new Error("Method not implemented.");
   }
 
-  create(answerComment: AnswerComment) {
+  async create(answerComment: AnswerComment): Promise<void> {
     throw new Error("Method not implemented.");
   }
 
-  delete(answerComment: AnswerComment) {
+  async delete(answerComment: AnswerComment): Promise<void> {
     throw new Error("Method not implemented.");
   }
 }

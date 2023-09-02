@@ -21,16 +21,16 @@ export class PrismaQuestionMapper {
     );
   }
 
-  static toPrisma(raw: Question): Prisma.QuestionUncheckedCreateInput {
+  static toPrisma(question: Question): Prisma.QuestionUncheckedCreateInput {
     return {
-      id: raw.id.toString(),
-      authorId: raw.id.toString(),
-      bestAnswerId: raw.bestAnswerId?.toString(),
-      title: raw.title,
-      content: raw.content,
-      slug: raw.slug.value,
-      createdAt: raw.createdAt,
-      updatedAt: raw.updatedAt,
+      id: question.id.toString(),
+      authorId: question.authorId.toString(),
+      bestAnswerId: question.bestAnswerId?.toString(),
+      title: question.title,
+      content: question.content,
+      slug: question.slug.value,
+      createdAt: question.createdAt,
+      updatedAt: question.updatedAt,
     };
   }
 }
