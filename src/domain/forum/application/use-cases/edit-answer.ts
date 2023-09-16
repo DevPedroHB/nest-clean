@@ -3,6 +3,7 @@ import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { NotAllowedError } from "@/core/errors/not-allowed-error";
 import { ResourceNotFoundError } from "@/core/errors/resource-not-found-error";
 import { Answer } from "@/domain/forum/enterprise/entities/answer";
+import { Injectable } from "@nestjs/common";
 import { AnswerAttachmentList } from "../../enterprise/entities/answer-attachment-list";
 import { AnswerAttachmentsRepository } from "../repositories/answer-attachments-repository";
 import { AnswersRepository } from "../repositories/answers-repository";
@@ -22,6 +23,7 @@ type EditAnswerUseCaseResponse = Either<
   }
 >;
 
+@Injectable()
 export class EditAnswerUseCase {
   constructor(
     private answersRepository: AnswersRepository,
