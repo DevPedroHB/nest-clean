@@ -5,7 +5,7 @@ export interface IComment {
   authorId: UniqueEntityID;
   content: string;
   createdAt: Date;
-  updatedAt?: Date;
+  updatedAt?: Date | null;
 }
 
 export abstract class Comment<Props extends IComment> extends Entity<Props> {
