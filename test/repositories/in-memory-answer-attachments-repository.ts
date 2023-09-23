@@ -1,8 +1,10 @@
+/* eslint-disable indent */
+
 import { AnswerAttachmentsRepository } from "@/domain/forum/application/repositories/answer-attachments-repository";
 import { AnswerAttachment } from "@/domain/forum/enterprise/entities/answer-attachment";
 
 export class InMemoryAnswerAttachmentsRepository
-implements AnswerAttachmentsRepository
+  implements AnswerAttachmentsRepository
 {
   public items: AnswerAttachment[] = [];
 
@@ -12,6 +14,18 @@ implements AnswerAttachmentsRepository
     );
 
     return answerAttachments;
+  }
+
+  async createMany(attachments: AnswerAttachment[]) {
+    this.items.push(...attachments);
+  }
+
+  async deleteMany(attachments: AnswerAttachment[]) {
+    const answerAttachment = this.items.filter((item) => {
+      return !attachments.some((attachment) => attachment.equals(item));
+    });
+
+    this.items = answerAttachment;
   }
 
   async deleteManyByAnswerId(answerId: string) {
